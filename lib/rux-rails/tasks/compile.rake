@@ -1,0 +1,18 @@
+require 'rux'
+require 'set'
+
+namespace :rux do
+  task compile: :environment do
+    config = Rails.application.config
+    paths = Set.new(config.autoload_paths + config.eager_load_paths)
+
+    paths.each do |path|
+      Dir.glob(File.join(path, '**/*.rux')).each do |file|
+        tmpl = Rux::Template.new(file)
+        outfile = "#{file.chomp('.rux')}.ruxc"
+        File.write(outfile, tmpl.to_ruby)
+        puts "Compiled #{file}"
+      end
+    end
+  end
+end
