@@ -8,9 +8,7 @@ namespace :rux do
 
     paths.each do |path|
       Dir.glob(File.join(path, '**/*.rux')).each do |file|
-        tmpl = Rux::Template.new(file)
-        outfile = "#{file.chomp('.rux')}.ruxc"
-        File.write(outfile, tmpl.to_ruby)
+        Rux::Template.new(file).write
         puts "Compiled #{file}"
       end
     end
