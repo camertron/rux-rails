@@ -17,7 +17,7 @@ module RuxRails
       end
 
       if config.rux.compile && app.config.file_watcher
-        paths = app.config.eager_load_paths + app.config.autoload_paths
+        paths = Set.new(app.config.eager_load_paths + app.config.autoload_paths)
 
         dirs = paths.each_with_object({}) do |path, ret|
           ret[path] = %w(rux)
