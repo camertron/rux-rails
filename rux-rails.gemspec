@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   # Zeitwerk was introduced in rails 6. I think we should support back to 5.0
   # as well, but for now let's just deal with 6 to limit scope.
   s.add_dependency 'railties', '>= 5.0'
+  s.add_dependency 'view_component', '~> 2.0'
 
   s.require_path = 'lib'
 

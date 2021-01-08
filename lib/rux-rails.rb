@@ -1,4 +1,5 @@
 module RuxRails
+  autoload :Components,      'rux-rails/components'
   autoload :TemplateHandler, 'rux-rails/template_handler'
 
   class << self
@@ -22,3 +23,6 @@ else
 end
 
 require 'rux-rails/railtie'
+require 'view_component/engine'
+
+ViewComponent::Base.send(:include, RuxRails::Components)
