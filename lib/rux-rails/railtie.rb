@@ -5,6 +5,10 @@ module RuxRails
     config.rux = ActiveSupport::OrderedOptions.new
 
     initializer 'rux-rails.initialize', before: :set_autoload_paths do |app|
+      ActionView::Template.register_template_handler(
+        :ruxt, RuxRails::TemplateHandler
+      )
+
       if config.rux.compile.nil? && Rails.env.development?
         config.rux.compile = true
       end

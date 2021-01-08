@@ -1,7 +1,8 @@
 module RuxRails
+  autoload :TemplateHandler, 'rux-rails/template_handler'
+
   class << self
     attr_accessor :zeitwerk_mode
-
     alias_method :zeitwerk_mode?, :zeitwerk_mode
   end
 end
