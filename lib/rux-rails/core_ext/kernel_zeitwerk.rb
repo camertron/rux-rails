@@ -6,7 +6,7 @@ module Kernel
 
   def load(file, *args)
     if File.extname(file) == '.rux'
-      tmpl = Rux::Template.new(file)
+      tmpl = Rux::File.new(file)
       tmpl.write if Rux.compile_on_load?
 
       # I don't understand why, but it's necessary to delete the constant
