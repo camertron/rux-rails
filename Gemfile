@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rux', path: '/Users/cdutro/workspace/rux'
+gem 'rux', github: 'camertron/rux'  # path: '/Users/cdutro/workspace/rux'
 
 group :development, :test do
   gem 'pry-byebug'
