@@ -3,3 +3,7 @@ Gemfile.lock
 .tool-versions
 pkg/
 *.ruxc
+spec/dummy/log
+spec/dummy/tmp
+gemfiles/*.gemfile.lock
+gemfiles/.bundle

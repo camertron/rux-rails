@@ -1,0 +1,13 @@
+class Button < ViewComponent::Base
+  attr_reader :outline, :size, :disabled
+
+  def initialize(outline:, size:, disabled:)
+    @outline = outline
+    @size = size
+    @disabled = disabled
+  end
+
+  def call
+    <button>{content}</button>
+  end
+end

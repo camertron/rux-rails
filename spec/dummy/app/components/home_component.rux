@@ -1,0 +1,10 @@
+class HomeComponent < ViewComponent::Base
+  def call
+    <div class="container">
+      <Image src="cat.png" size="40" />
+      <Button outline={true} disabled size={:large}>
+        Click Me!
+      </Button>
+    </div>
+  end
+end

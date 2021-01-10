@@ -9,7 +9,7 @@ module RuxRails
         :ruxt, RuxRails::TemplateHandler
       )
 
-      if config.rux.compile.nil? && Rails.env.development?
+      if config.rux.compile.nil? && (Rails.env.development? || Rails.env.test?)
         config.rux.compile = true
       end
 
