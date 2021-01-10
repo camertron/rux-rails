@@ -32,6 +32,7 @@ else
   RuxRails.zeitwerk_mode = true
 end
 
+require 'rux'
 require 'rux-rails/railtie'
 require 'view_component/engine'
 
