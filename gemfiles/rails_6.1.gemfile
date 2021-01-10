@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rux", path: "/Users/cdutro/workspace/rux"
+gem "rux", github: "camertron/rux"
 gem "rails", "~> 6.1.0"
 
 group :development, :test do
