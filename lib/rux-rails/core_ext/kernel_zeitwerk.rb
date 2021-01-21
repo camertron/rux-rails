@@ -42,7 +42,7 @@ module Kernel
       path = nil
       rux_file = file.end_with?('.rux') ? file : "#{file}.rux"
 
-      if File.absolute_path?(rux_file) && File.exist?(rux_file)
+      if File.absolute_path(rux_file) == rux_file && File.exist?(rux_file)
         path = rux_file
       elsif rux_file.start_with?(".#{File::SEPARATOR}")
         abs_path = File.expand_path(rux_file)
