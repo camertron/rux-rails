@@ -283,7 +283,9 @@ Hit me up if you know of a less invasive way of enabling auto-transpilation.
 ## Editor Support
 
 Sublime Text: [https://github.com/camertron/rux-SublimeText](https://github.com/camertron/rux-SublimeText)
+
 Atom: [https://github.com/camertron/rux-atom](https://github.com/camertron/rux-atom)
+
 VSCode: [https://github.com/camertron/rux-vscode](https://github.com/camertron/rux-vscode)
 
 ## Running Tests
