@@ -254,7 +254,31 @@ This results in the following HTML:
 
 ## Rux Templates
 
+In addition to supporting view components, rux also supports rendering rux directly in your Rails views. Just give your view a .ruxt file extension and voila! Rux in your views! As an example, let's rewrite our view from the previous section as a rux template:
+
+```ruby
+# app/views/home/index.html.ruxt
+<GreetingComponent
+  people={[
+    { first_name: 'Homer',  last_name: 'Simpson' },
+    { first_name: 'Barney', last_name: 'Gumble' },
+    { first_name: 'Monty',  last_name: 'Burns' }
+  ]}
+/>
+```
+
 ## How it Works
+
+Rux-rails monkeypatches the `Kernel` module in order to automatically transpile .rux files on `require`. That might be a controversial idea, but it seems to work really well. Here's how it works step-by-step:
+
+1. First, rux-rails attempts to call Ruby's original `require` method.
+1. If original `require` raises a `LoadError`, rux-rails searches the Ruby load path for a file with a .rux extension.
+1. If a corresponding .rux file exists on disk, rux-rails compiles it loads it using `Kernel.load`.
+1. If a corresponding .rux file cannot be found, rux-rails raises the original `LoadError`.
+
+There are also monkeypatches in place for Zeitwerk and `ActiveSupport::Dependencies` to get auto-transpiling working with Rails autoloading (which is absurdly obtuse and complicated). The monkeypatches are necessary mostly because Ruby and Rails assume Ruby files will always have .rb file extensions.
+
+Hit me up if you know of a less invasive way of enabling auto-transpilation.
 
 ## Running Tests
 
