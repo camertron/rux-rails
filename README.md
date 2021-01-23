@@ -125,14 +125,14 @@ class NameComponent < ViewComponent::Base
   end
 
   def call
-    <span>{@first_name} {@last_name}</span>
+    <span class='name'>{@first_name} {@last_name}</span>
   end
 end
 
 # app/components/greeting_component.rux
 class GreetingComponent < ViewComponent::Base
   def call
-    <div>
+    <div class='greeting'>
       Hey there <NameComponent first-name="Homer" last-name="Simpson" />!
     </div>
   end
@@ -149,12 +149,108 @@ Then, in one of your Rails views, render `GreetingComponent` like so:
 When rendered, the view will contain the following HTML:
 
 ```html
-<div>
-  Hey there <span>Homer Simpson!</span>
+<div class="greeting">
+  Hey there <span class="name">Homer Simpson!</span>
+</div>
+```
+
+### Component Contents
+
+View components can also have content bodies, which can be other view components. Use the `content` method  where you want the nested content to be rendered. As an example, let's modify our `GreetingComponent`:
+
+
+```ruby
+# app/components/greeting_component.rux
+class GreetingComponent < ViewComponent::Base
+  def call
+    <div class='greeting'>
+      <SalutationComponent>
+        <NameComponent first-name="Homer" last-name="Simpson" />
+      </SalutationComponent>
+    </div>
+  end
+end
+
+# app/components/salutation_component.rux
+class SalutationComponent < ViewComponent::Base
+  SALUTATIONS = ['Hey there', 'Greetings', 'Great to see you'].freeze
+
+  def call
+    <span class='salutation'>
+      {SALUTATIONS.sample} {content}!
+    </span>
+  end
+end
+```
+
+When rendered in a view, we get the following HTML:
+
+```html
+<div class="greeting">
+  <span class="salutation">
+    Greetings <span class="name">Homer Simpson</span>!
+  </span>
 </div>
 ```
 
 ### Embedding Ruby
+
+As we've already seen, you can embed Ruby code between curly braces. It's important to know however that Ruby code is only allowed for attribute values and content bodies.
+
+Because the wide world of Ruby is available to you, anything goes. For example, let's modify our `GreetingComponent` to say hi to a variable number of people:
+
+```ruby
+# app/components/greeting_component.rux
+class GreetingComponent < ViewComponent::Base
+  def initialize(people:)
+    @people = people
+  end
+
+  def call
+    <div class='greeting'>
+      {@people.map do |person|
+        <SalutationComponent>
+          Hey there <NameComponent
+            first-name={person[:first_name]}
+            last-name={person[:last_name]}
+          />!
+        </SalutationComponent>
+      end}
+    </div>
+  end
+end
+```
+
+Notice I used `map` to render multiple `NameComponents`. I've got rux in my Ruby in my rux in my Ruby!
+
+Next, let's modify our view to pass in an array of person hashes:
+
+```html+erb
+<%# app/views/home/index.html.erb %>
+<%= render(
+  GreetingComponent.new([
+    { first_name: 'Homer',  last_name: 'Simpson' },
+    { first_name: 'Barney', last_name: 'Gumble' },
+    { first_name: 'Monty',  last_name: 'Burns' }
+  ])
+) %>
+```
+
+This results in the following HTML:
+
+```html
+<div class="greeting">
+  <span class="salutation">
+    Greetings <span class="name">Homer Simpson</span>!
+  </span>
+  <span class="salutation">
+    Great to see you <span class="name">Barney Gumble</span>!
+  </span>
+  <span class="salutation">
+    Hey there <span class="name">Monty Burns</span>!
+  </span>
+</div>
+```
 
 ## Rux Templates
 
