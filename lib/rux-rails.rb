@@ -5,7 +5,7 @@ module RuxRails
   autoload :Visitor,         'rux-rails/visitor'
 
   class << self
-    attr_accessor :zeitwerk_mode
+    attr_accessor :zeitwerk_mode, :transpile_on_load
     alias_method :zeitwerk_mode?, :zeitwerk_mode
 
     def visitor
@@ -15,7 +15,13 @@ module RuxRails
     def tag_builder
       @tag_builder ||= TagBuilder.new
     end
+
+    def transpile_on_load?
+      transpile_on_load.call
+    end
   end
+
+  self.transpile_on_load = -> () { true }
 end
 
 begin

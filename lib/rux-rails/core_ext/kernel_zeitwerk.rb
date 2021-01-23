@@ -7,7 +7,7 @@ module Kernel
   def load(file, *args)
     if File.extname(file) == '.rux'
       tmpl = Rux::File.new(file)
-      tmpl.write if Rux.compile_on_load?
+      tmpl.write if RuxRails.transpile_on_load?
 
       # I don't understand why, but it's necessary to delete the constant
       # in order to load the .ruxc file. Otherwise you get an error about

@@ -8,7 +8,7 @@ module RuxRails
 
       if file.end_with?('.rux')
         tmpl = Rux::File.new(file)
-        tmpl.write if Rux.compile_on_load?
+        tmpl.write if RuxRails.transpile_on_load?
 
         return super(tmpl.default_outfile, *args)
       end

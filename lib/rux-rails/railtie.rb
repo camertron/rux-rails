@@ -9,18 +9,18 @@ module RuxRails
         :ruxt, RuxRails::TemplateHandler
       )
 
-      if config.rux.compile.nil? && (Rails.env.development? || Rails.env.test?)
-        config.rux.compile = true
+      if config.rux.transpile.nil? && (Rails.env.development? || Rails.env.test?)
+        config.rux.transpile = true
       end
 
-      Rux.compile_on_load = -> () { config.rux.compile }
+      RuxRails.transpile_on_load = -> () { config.rux.transpile }
 
       Rux.library_paths.each do |library_path|
         app.config.eager_load_paths << library_path
         app.config.autoload_paths << library_path
       end
 
-      if config.rux.compile && app.config.file_watcher
+      if config.rux.transpile && app.config.file_watcher
         paths = Set.new(app.config.eager_load_paths + app.config.autoload_paths)
 
         dirs = paths.each_with_object({}) do |path, ret|
@@ -34,7 +34,7 @@ module RuxRails
     end
 
     rake_tasks do
-      load File.expand_path(File.join(*%w(. tasks compile.rake)), __dir__)
+      load File.expand_path(File.join(*%w(. tasks transpile.rake)), __dir__)
     end
   end
 end
