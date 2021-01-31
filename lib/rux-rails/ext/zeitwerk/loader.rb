@@ -13,8 +13,13 @@ module RuxRails
         # Zeitwerk very naïvely tries to remove only the last 3 characters in
         # an attempt to strip off the .rb file extension, which it assumes all
         # autoloadable files will contain. This line is necessary to remove the
-        # trailing period.
+        # trailing leftover period.
         cname = cname.to_s.chomp('.').to_sym
+      else
+        # if there is a corresponding .rux file, autoload it instead of the .rb
+        # file
+        rux_file = "#{file.chomp('.rb')}.rux"
+        file = rux_file if File.exist?(rux_file)
       end
 
       super
