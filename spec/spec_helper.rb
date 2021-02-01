@@ -6,8 +6,6 @@ require 'rails'
 require 'rux-rails'
 
 require 'action_controller/railtie'
-require 'action_view/railtie'
-require 'sprockets/railtie'
 
 Dir.chdir(File.join(*%w(spec dummy))) do
   require File.expand_path(File.join(*%w(dummy config application)), __dir__)
