@@ -38,6 +38,13 @@ else
   RuxRails.zeitwerk_mode = true
 end
 
+begin
+  require 'bootsnap'
+rescue LoadError
+else
+  require 'rux-rails/ext/bootsnap/autoload'
+end
+
 require 'rux'
 require 'rux-rails/railtie'
 require 'view_component/engine'

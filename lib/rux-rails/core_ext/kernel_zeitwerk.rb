@@ -45,7 +45,9 @@ module Kernel
     end
 
     unless path
-      # this is ruby's original require
+      # This will be either Ruby's original require or bootsnap's monkeypatched
+      # require in setups that use bootsnap. Lord help us with all these layers
+      # of patches.
       return zeitwerk_original_require(file)
     end
 

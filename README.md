@@ -79,9 +79,15 @@ In my humble opinion, the rux version:
 
 Integrating rux into your Rails app is pretty straightforward.
 
-1. Add rux-rails to your Gemfile, eg:
+1. Add the view_component gem into your Gemfile, eg:
     ```ruby
-    gem 'rux-rails', '~> 1.0'
+    gem 'view_component', require: 'view_component/engine'
+    ```
+1. Add rux-rails to the development group in your Gemfile, eg:
+    ```ruby
+    group :development do
+      gem 'rux-rails', '~> 1.0'
+    end
     ```
 1. Run `bundle install`
 1. ... that's it.
@@ -100,13 +106,13 @@ config.rux.transpile = false
 
 ### Production Environment
 
-By default, automatic transpilation of .rux files is disabled in the production environment for the same reasons the asset pipeline is disabled. Your view components (and static assets) don't change once deployed, so it's more efficient to precompile (or pre-transpile) them before deploying. Rux-rails comes with a handy rake task that can pre-transpile all your .rux templates:
+By including rux-rails in the `:development` group in your Gemfile, rux-rails and its monkeypatches to `Kernel` aren't loaded in production (which is a good thing). You could choose to include rux-rails in the default group, but automatic transpilation of .rux files is disabled in the production environment for the same reasons the asset pipeline is disabled. Your view components (and static assets) don't change once deployed, so it's more efficient to precompile (or pre-transpile) them before deploying. Rux-rails comes with a handy rake task that can pre-transpile all your .rux templates:
 
 ```bash
 bundle exec rake rux:transpile
 ```
 
-I recommend running this rake task at the same time you run `assets:precompile` and/or `webpacker:compile`. The `rux:transpile` task will produce one .ruxc file for every .rux file it encounters in your app.
+I recommend running this rake task at the same time you run `assets:precompile` and/or `webpacker:compile`. The `rux:transpile` task will produce one .rb file for every .rux file it encounters in your app.
 
 ## Writing Rux Components
 
