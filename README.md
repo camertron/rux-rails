@@ -79,10 +79,6 @@ In my humble opinion, the rux version:
 
 Integrating rux into your Rails app is pretty straightforward.
 
-1. Add the view_component gem into your Gemfile, eg:
-    ```ruby
-    gem 'view_component', require: 'view_component/engine'
-    ```
 1. Add rux-rails to the development group in your Gemfile, eg:
     ```ruby
     group :development do
@@ -296,7 +292,7 @@ VSCode: [https://github.com/camertron/rux-vscode](https://github.com/camertron/r
 
 ## Running Tests
 
-`bundle exec rspec` should do the trick.
+`bundle exec appraisal rake` should do the trick.
 
 ## License
 

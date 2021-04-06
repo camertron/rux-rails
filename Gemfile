@@ -6,6 +6,7 @@ gem 'rux', github: 'camertron/rux'  # path: '/Users/cdutro/workspace/rux'
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'rake'
 end
 
 group :development do
