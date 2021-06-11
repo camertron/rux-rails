@@ -1,4 +1,6 @@
-## rux-rails [![Build Status](https://travis-ci.com/camertron/rux-rails.svg?branch=master)](https://travis-ci.com/camertron/rux-rails)
+## rux-rails
+
+![Unit Tests](https://github.com/camertron/rux-rails/actions/workflows/unit_tests.yml/badge.svg?branch=master)
 
 Easily write [rux](https://github.com/camertron/rux) view components in Rails.
 
