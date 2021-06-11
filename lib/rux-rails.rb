@@ -49,7 +49,6 @@ end
 require 'rux'
 require 'rux-rails/railtie'
 require 'view_component/engine'
-require 'active_support'
 
 ViewComponent::Base.send(:include, RuxRails::Components)
 Rux.tag_builder = RuxRails.tag_builder
