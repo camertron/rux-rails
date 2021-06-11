@@ -1,6 +1,6 @@
 module RuxRails
-  autoload :Buffer,          'rux-rails/buffer'
   autoload :Components,      'rux-rails/components'
+  autoload :SafeBuffer,      'rux-rails/safe_buffer'
   autoload :TagBuilder,      'rux-rails/tag_builder'
   autoload :TemplateHandler, 'rux-rails/template_handler'
   autoload :Visitor,         'rux-rails/visitor'
