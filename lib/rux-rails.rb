@@ -25,26 +25,6 @@ module RuxRails
   self.transpile_on_load = -> () { true }
 end
 
-begin
-  require 'zeitwerk'
-rescue LoadError
-  require 'rux-rails/core_ext/kernel'
-  require 'rux-rails/ext/activesupport/dependencies'
-
-  RuxRails.zeitwerk_mode = false
-else
-  require 'rux-rails/core_ext/kernel_zeitwerk'
-  require 'rux-rails/ext/zeitwerk/loader'
-
-  RuxRails.zeitwerk_mode = true
-end
-
-begin
-  require 'bootsnap'
-rescue LoadError
-else
-  require 'rux-rails/ext/bootsnap/autoload'
-end
 
 require 'rux'
 require 'rux-rails/railtie'

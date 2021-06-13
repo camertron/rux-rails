@@ -5,6 +5,25 @@ module RuxRails
     config.rux = ActiveSupport::OrderedOptions.new
 
     initializer 'rux-rails.initialize', before: :set_autoload_paths do |app|
+      if !app.config.respond_to?(:autoloader) || app.config.autoloader == :classic
+        require 'rux-rails/core_ext/kernel'
+        require 'rux-rails/ext/activesupport/dependencies'
+
+        RuxRails.zeitwerk_mode = false
+      else
+        require 'rux-rails/core_ext/kernel_zeitwerk'
+        require 'rux-rails/ext/zeitwerk/loader'
+
+        RuxRails.zeitwerk_mode = true
+      end
+
+      begin
+        require 'bootsnap'
+      rescue LoadError
+      else
+        require 'rux-rails/ext/bootsnap/autoload'
+      end
+
       ActionView::Template.register_template_handler(
         :ruxt, RuxRails::TemplateHandler
       )
