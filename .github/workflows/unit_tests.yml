@@ -5,14 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: [2.7, 3.0]
-        rails-version: ['5.0', '5.1', '5.2', '6.0', '6.1', '7.0']
+        ruby-version: ['2.7', '3.0']
+        rails-version: ['5.2', '6.0', '6.1', '7.0']
         exclude:
-          - ruby-version: 3.0
-            rails-version: '5.0'
-          - ruby-version: 3.0
-            rails-version: '5.1'
-          - ruby-version: 3.0
+          - ruby-version: '3.0'
             rails-version: '5.2'
     steps:
       - uses: actions/checkout@v2
