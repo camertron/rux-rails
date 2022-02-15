@@ -5,16 +5,16 @@ module RuxRails
     config.rux = ActiveSupport::OrderedOptions.new
 
     initializer 'rux-rails.initialize', before: :set_autoload_paths do |app|
-      if !app.config.respond_to?(:autoloader) || app.config.autoloader == :classic
-        require 'rux-rails/core_ext/kernel'
-        require 'rux-rails/ext/activesupport/dependencies'
-
-        RuxRails.zeitwerk_mode = false
-      else
+      if Rails.respond_to?(:autoloaders) && Rails.autoloaders.zeitwerk_enabled?
         require 'rux-rails/core_ext/kernel_zeitwerk'
         require 'rux-rails/ext/zeitwerk/loader'
 
         RuxRails.zeitwerk_mode = true
+      else
+        require 'rux-rails/core_ext/kernel'
+        require 'rux-rails/ext/activesupport/dependencies'
+
+        RuxRails.zeitwerk_mode = false
       end
 
       begin
