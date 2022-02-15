@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         ruby-version: [2.7, 3.0]
-        rails-version: ['5.0', '5.1', '5.2', '6.0', '6.1']
+        rails-version: ['5.0', '5.1', '5.2', '6.0', '6.1', '7.0']
         exclude:
           - ruby-version: 3.0
             rails-version: '5.0'
