@@ -1,3 +1,7 @@
+## 1.2.2
+* Fix calling private Zeitwerk method.
+* Check railties version in dummy app instead of rails.
+
 ## 1.2.1
 * Support newer versions of Zeitwerk (2.5 and beyond).
 * Support Rails 7.

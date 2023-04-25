@@ -14,7 +14,7 @@ module Kernel
       # an uninitialized constant, and it's like... yeah, I _know_ it's
       # uninitialized, that's why I'm loading this file. Whatevs.
       loader = Zeitwerk::Registry.loader_for(file)
-      parent, cname = loader.autoloads[file]
+      parent, cname = loader.send(:autoloads)[file]
       parent.send(:remove_const, cname)
 
       return rux_orig_load(tmpl.default_outfile, *args)
