@@ -1,5 +1,8 @@
 require 'rails/railtie'
 
+require 'active_support'
+require 'active_support/isolated_execution_state' if ActiveSupport::VERSION::MAJOR > 6
+
 module RuxRails
   class Railtie < Rails::Railtie
     config.rux = ActiveSupport::OrderedOptions.new
