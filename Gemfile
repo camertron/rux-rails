@@ -15,4 +15,5 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara', '~> 3.0'
 end

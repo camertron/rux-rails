@@ -22,4 +22,5 @@ end
 
 RSpec.configure do |config|
   config.include(SpecHelpers)
+  config.include(Capybara::RSpecMatchers, type: :request)
 end
