@@ -1,0 +1,6 @@
+<div>
+  <h1>hello <%= @name %></h1>
+  <% 50.times do %>
+    <%= render(Performance::ErbNestedNameComponent.new(name: @name)) %>
+  <% end %>
+</div>

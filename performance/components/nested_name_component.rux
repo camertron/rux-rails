@@ -1,0 +1,9 @@
+class Performance::NestedNameComponent < ViewComponent::Base
+  def initialize(name:)
+    @name = name
+  end
+
+  def call
+    <p>nested hello {@name}</p>
+  end
+end
