@@ -1,3 +1,6 @@
+## 1.3.0
+* Add support for view_component v3.0.
+
 ## 1.2.2
 * Fix calling private Zeitwerk method.
 * Check railties version in dummy app instead of rails.
