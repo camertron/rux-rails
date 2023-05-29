@@ -1,0 +1,14 @@
+class Performance::NameComponent < ViewComponent::Base
+  def initialize(name:)
+    @name = name
+  end
+
+  def call
+    <div>
+      <h1>hello {@name}</h1>
+      {50.times.map do
+        <Performance::NestedNameComponent name={@name} />
+      end}
+    </div>
+  end
+end

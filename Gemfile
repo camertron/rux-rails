@@ -11,6 +11,9 @@ end
 
 group :development do
   gem 'appraisal'
+  gem 'benchmark-ips'
+  gem 'rails', '~> 7.0'
+  gem 'slim', '~> 5.0'
 end
 
 group :test do
