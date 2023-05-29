@@ -28,6 +28,9 @@ end
 
 require 'rux'
 require 'rux-rails/railtie'
+
+# require both of these to support multiple versions of view_component
+require 'view_component'
 require 'view_component/engine'
 
 ViewComponent::Base.send(:include, RuxRails::Components)
