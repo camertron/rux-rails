@@ -1,3 +1,7 @@
+## 1.4.0
+* Make rux-rails safe to load in production.
+  - All the monkeypatches to `Kernel`, etc are now only loaded if `config.rux.transpile` is `true`.
+
 ## 1.3.0
 * Add support for view_component v3.0.
 

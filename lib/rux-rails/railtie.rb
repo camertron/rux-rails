@@ -8,34 +8,36 @@ module RuxRails
     config.rux = ActiveSupport::OrderedOptions.new
 
     initializer 'rux-rails.initialize', before: :set_autoload_paths do |app|
-      if Rails.respond_to?(:autoloaders) && Rails.autoloaders.zeitwerk_enabled?
-        require 'rux-rails/core_ext/kernel_zeitwerk'
-        require 'rux-rails/ext/zeitwerk/loader'
-
-        RuxRails.zeitwerk_mode = true
-      else
-        require 'rux-rails/core_ext/kernel'
-        require 'rux-rails/ext/activesupport/dependencies'
-
-        RuxRails.zeitwerk_mode = false
-      end
-
-      begin
-        require 'bootsnap'
-      rescue LoadError
-      else
-        require 'rux-rails/ext/bootsnap/autoload'
-      end
-
-      ActionView::Template.register_template_handler(
-        :ruxt, RuxRails::TemplateHandler
-      )
-
       if config.rux.transpile.nil? && (Rails.env.development? || Rails.env.test?)
         config.rux.transpile = true
       end
 
       RuxRails.transpile_on_load = -> () { config.rux.transpile }
+
+      if config.rux.transpile
+        if Rails.respond_to?(:autoloaders) && Rails.autoloaders.zeitwerk_enabled?
+          require 'rux-rails/core_ext/kernel_zeitwerk'
+          require 'rux-rails/ext/zeitwerk/loader'
+
+          RuxRails.zeitwerk_mode = true
+        else
+          require 'rux-rails/core_ext/kernel'
+          require 'rux-rails/ext/activesupport/dependencies'
+
+          RuxRails.zeitwerk_mode = false
+        end
+
+        begin
+          require 'bootsnap'
+        rescue LoadError
+        else
+          require 'rux-rails/ext/bootsnap/autoload'
+        end
+      end
+
+      ActionView::Template.register_template_handler(
+        :ruxt, RuxRails::TemplateHandler
+      )
 
       Rux.library_paths.each do |library_path|
         app.config.eager_load_paths << library_path
