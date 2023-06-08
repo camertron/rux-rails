@@ -81,11 +81,9 @@ In my humble opinion, the rux version:
 
 Integrating rux into your Rails app is pretty straightforward.
 
-1. Add rux-rails to the development group in your Gemfile, eg:
+1. Add rux-rails to your Gemfile, eg:
     ```ruby
-    group :development do
-      gem 'rux-rails', '~> 1.0'
-    end
+    gem 'rux-rails', '~> 1.0'
     ```
 1. Run `bundle install`
 1. ... that's it.
@@ -104,7 +102,7 @@ config.rux.transpile = false
 
 ### Production Environment
 
-By including rux-rails in the `:development` group in your Gemfile, rux-rails and its monkeypatches to `Kernel` aren't loaded in production (which is a good thing). You could choose to include rux-rails in the default group, but automatic transpilation of .rux files is disabled in the production environment for the same reasons the asset pipeline is disabled. Your view components (and static assets) don't change once deployed, so it's more efficient to precompile (or pre-transpile) them before deploying. Rux-rails comes with a handy rake task that can pre-transpile all your .rux templates:
+By default, `config.rux.transpile` is set to `false` in the production environment, which means rux-rails' monkeypatches to `Kernel`, etc aren't loaded in production (which is a good thing). You could choose to turn it on, but automatic transpilation of .rux files is disabled automatically in the production environment for the same reasons the asset pipeline is disabled. Your view components (and static assets) don't change once deployed, so it's more efficient to precompile (or pre-transpile) them before deploying. Rux-rails comes with a handy rake task that can pre-transpile all your .rux templates:
 
 ```bash
 bundle exec rake rux:transpile
