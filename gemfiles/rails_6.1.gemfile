@@ -9,6 +9,7 @@ gem "rails", "~> 6.1.0"
 group :development, :test do
   gem "pry-byebug"
   gem "rake"
+  gem "debug"
 end
 
 group :development do

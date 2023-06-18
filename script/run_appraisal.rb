@@ -30,12 +30,14 @@ def run(ruby_version, cmd, env = {}, prefix: '')
   asdf_ruby_version = $installed_ruby_versions_by_minor[ruby_version]
   env["ASDF_RUBY_VERSION"] = asdf_ruby_version
   env_str = env.map { |k, v| "#{k}=#{v}" }.join(" ")
+  install_path = `asdf where ruby #{asdf_ruby_version}`.strip
+  env["PATH"] = "#{File.join(install_path, "bin")}:#{ENV["PATH"]}"
   puts "#{prefix}#{env_str} #{cmd}"
   system(env, cmd)
 end
 
-def appraisal(ruby_version, rails_version, cmd, prefix: '')
-  run(ruby_version, "bundle exec appraisal rails-#{rails_version} #{cmd}", prefix: prefix)
+def appraise(ruby_version, rails_version, cmd, prefix: '')
+  run(ruby_version, cmd, { "BUNDLE_GEMFILE" => "gemfiles/rails_#{rails_version}.gemfile" }, prefix: prefix)
 end
 
 task_count = matrix.size * 2
@@ -49,10 +51,10 @@ results = matrix.map.with_index do |(ruby_version, rails_version), idx|
     prefix: "(#{(idx * 2) + 1}/#{task_count}) "
   )
 
-  appraisal(
+  appraise(
     ruby_version,
     rails_version,
-    "rspec",
+    "bundle exec rspec",
     prefix: "(#{(idx * 2) + 2}/#{task_count}) "
   )
 

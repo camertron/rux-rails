@@ -18,7 +18,7 @@ module RuxRails
         require 'onload'
 
         Onload.register('.rux', RuxRails::RuxLoader)
-        Onload.enable!
+        Onload.install!
       end
 
       ActionView::Template.register_template_handler(
