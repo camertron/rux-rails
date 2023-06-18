@@ -1,3 +1,7 @@
+# require both of these to support multiple versions of view_component
+require 'view_component'
+require 'view_component/engine'
+
 module RuxRails
   class DummyApplication < ::Rails::Application
     if config.respond_to?(:load_defaults)

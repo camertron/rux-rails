@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "rux", github: "camertron/rux"
+gem "onload", path: "/Users/camertron/workspace/camertron/onload"
 gem "rails", "~> 5.2.0"
 
 group :development, :test do
@@ -12,6 +13,8 @@ end
 
 group :development do
   gem "appraisal"
+  gem "benchmark-ips"
+  gem "slim", "~> 5.0"
 end
 
 group :test do
