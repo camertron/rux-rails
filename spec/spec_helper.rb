@@ -13,19 +13,29 @@ end
 
 require 'rspec/rails'
 
-module SpecHelpers
-  extend RSpec::SharedContext
+module RuxRails
+  module SpecHelpers
+    extend RSpec::SharedContext
 
-  let(:app) { Rails.application }
+    let(:app) { Rails.application }
 
-  before(:each) do
-    Dir.glob("spec/dummy/app/components/*.rb").each do |f|
-      File.unlink(f)
+    before(:each) do
+      Dir.glob("spec/dummy/app/components/*.rb").each do |f|
+        File.unlink(f)
+      end
+    end
+
+    def with_file_contents(path, contents)
+      old_contents = ::File.read(path)
+      ::File.write(path, contents)
+      yield
+    ensure
+      ::File.write(path, old_contents)
     end
   end
 end
 
 RSpec.configure do |config|
-  config.include(SpecHelpers)
+  config.include(RuxRails::SpecHelpers)
   config.include(Capybara::RSpecMatchers, type: :request)
 end
