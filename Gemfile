@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rux', github: 'camertron/rux'  # path: '/Users/cdutro/workspace/rux'
-gem 'onload', path: '/Users/camertron/workspace/camertron/onload'
-
 group :development, :test do
   gem 'pry-byebug'
   gem 'rake'
