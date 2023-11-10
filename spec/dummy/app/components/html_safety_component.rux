@@ -1,0 +1,9 @@
+class HtmlSafetyComponent < ViewComponent::Base
+  def initialize(value:)
+    @value = value
+  end
+
+  def call
+    <div>{@value}</div>
+  end
+end

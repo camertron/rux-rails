@@ -1,6 +1,6 @@
 module RuxRails
   autoload :Components,      'rux-rails/components'
-  autoload :SafeBuffer,      'rux-rails/safe_buffer'
+  autoload :OutputBuffer,    'rux-rails/output_buffer'
   autoload :TagBuilder,      'rux-rails/tag_builder'
   autoload :TemplateHandler, 'rux-rails/template_handler'
   autoload :Visitor,         'rux-rails/visitor'
@@ -35,4 +35,4 @@ require 'view_component/engine'
 
 ViewComponent::Base.send(:include, RuxRails::Components)
 Rux.tag_builder = RuxRails.tag_builder
-Rux.buffer = RuxRails::SafeBuffer
+Rux.buffer = RuxRails::OutputBuffer
