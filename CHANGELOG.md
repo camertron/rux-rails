@@ -1,3 +1,6 @@
+## main
+* Extract monkeypatches into the onload gem.
+
 ## 1.4.0
 * Make rux-rails safe to load in production.
   - All the monkeypatches to `Kernel`, etc are now only loaded if `config.rux.transpile` is `true`.

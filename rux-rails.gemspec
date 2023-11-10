@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rux', '~> 1.0'
   s.add_dependency 'railties', '>= 5.0'
   s.add_dependency 'view_component', '>= 2', '< 4'
+  s.add_dependency 'onload', '~> 1.0'
 
   s.require_path = 'lib'
 
