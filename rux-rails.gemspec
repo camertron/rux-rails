@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = s.summary = 'Rux view components on Rails.'
   s.platform = Gem::Platform::RUBY
 
-  s.add_dependency 'rux', '~> 1.0'
+  s.add_dependency 'rux', '~> 1.2'
   s.add_dependency 'railties', '>= 5.0'
   s.add_dependency 'view_component', '>= 2', '< 4'
   s.add_dependency 'onload', '~> 1.0'

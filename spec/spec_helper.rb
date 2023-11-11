@@ -1,5 +1,3 @@
-require 'pry-byebug'
-
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'rails'

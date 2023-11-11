@@ -2,10 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 5.2.0"
+gem "rails", "~> 7.1.0"
 
 group :development, :test do
-  gem "pry-byebug"
   gem "rake"
   gem "debug"
 end

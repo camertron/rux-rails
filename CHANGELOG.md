@@ -1,5 +1,7 @@
-## main
-* Extract monkeypatches into the onload gem.
+## 1.5.0
+* Extract monkeypatches into the [onload gem](https://github.com/camertron/onload).
+* Upgrade to rux v1.2.
+* Drop official support for Rails < 6 and Ruby < 3.
 
 ## 1.4.0
 * Make rux-rails safe to load in production.
