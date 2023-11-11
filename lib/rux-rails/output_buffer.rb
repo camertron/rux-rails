@@ -1,4 +1,4 @@
-require 'active_support'
+require 'action_view'
 
 module RuxRails
   class OutputBuffer < ActionView::OutputBuffer
