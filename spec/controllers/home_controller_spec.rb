@@ -4,7 +4,7 @@ describe HomeController, type: :request do
   describe '#index' do
     before(:each) do
       # Force a recompile to avoid test pollution
-      HomeComponent.compile
+      HomeComponent.respond_to?(:__vc_compile) ? HomeComponent.__vc_compile : HomeComponent.compile
     end
 
     it 'transpiles the file' do

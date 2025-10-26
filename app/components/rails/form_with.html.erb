@@ -1,0 +1,5 @@
+<%= form_with(*@args, **@kwargs) do |f| %>
+  <% provide_context(:rux, { form_builder: f }) do %>
+    <%= content %>
+  <% end %>
+<% end %>

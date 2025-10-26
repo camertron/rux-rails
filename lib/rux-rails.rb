@@ -24,7 +24,10 @@ end
 
 
 require 'rux'
-require 'rux-rails/railtie'
+
+if defined?(Rails)
+  require 'rux-rails/engine'
+end
 
 Rux.tag_builder = RuxRails.tag_builder
 Rux.buffer = RuxRails::OutputBuffer

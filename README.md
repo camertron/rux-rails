@@ -282,6 +282,62 @@ There are also monkeypatches in place for Zeitwerk and `ActiveSupport::Dependenc
 
 Hit me up if you know of a less invasive way of enabling auto-transpilation.
 
+## Built-in Components
+
+The rux-rails gem contains several helper components to make it easier to work with Rails forms and tag helpers. Only a subset of Rails helpers are implemented. If you need others, please open an issue or, better yet, submit a pull request.
+
+### Tag Helpers
+
+The following tag helpers are available as components:
+
+1. `button_to`: Use the `Rails::ButtonTo` component, eg: `<Rails::ButtonTo url: "http://example.com" label: "Click me" />`.
+1. `link_to`: Use the `Rails::LinkTo` component, eg: `<Rails::LinkTo url="http://example.com" label="Navigate" />`.
+1. `content_tag`: Use the `Rails::ContentTag` component, eg: `<Rails::ContentTag tag={:div}>content</Rails::ContentTag>`
+
+### Form Helpers
+
+1. `form_with`: `Rails::FormWith`
+1. `button_tag` or `f.submit`: `Rails::Button`
+1. `label_tag` or `f.label`: `Rails::Label`
+1. `text_field_tag` or `f.text_field`: `Rails::TextField`
+1. `password_field_tag` or `f.password_field`: `Rails::PasswordField`
+1. `hidden_field_tag` or `f.hidden_field`: `Rails::HiddenField`
+
+### Form Example
+
+Here's how to use the above components to build eg. a simple sign up form:
+
+```ruby
+<Rails::FormWith model={User.new}>
+  <Rails::Label name="name">Name</Rails::Label>
+  <Rails::TextField name="name" />
+  <Rails::Label name="email_address">Email address</Rails::Label>
+  <Rails::TextField name="email_address" />
+  <Rails::Label name="password">Password</Rails::Label>
+  <Rails::PasswordField name="password" />
+  <Rails::Label name="password_confirm">Confirm password</Rails::Label>
+  <Rails::PasswordField name="password_confirmation" />
+</Rails::FormWith>
+```
+
+### The `Component` component
+
+Occasionally it can be useful to create an instance of a component outside the `call` method. While such a component can be rendered via the `render` method, doing so doesn't feel very "ruxy." That's where the `Rux::Component` component comes into play. It accepts a single `instance:` argument and renders it. For example:
+
+```ruby
+class ParentComponent < ApplicationComponent
+  def initialize
+    @child = ChildComponent.new
+  end
+
+  def call
+    <div>
+      <Rux::Component instance={@child} />
+    </div>
+  end
+end
+```
+
 ## Editor Support
 
 Sublime Text: [https://github.com/camertron/rux-SublimeText](https://github.com/camertron/rux-SublimeText)

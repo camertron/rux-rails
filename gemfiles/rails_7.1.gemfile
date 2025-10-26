@@ -2,6 +2,9 @@
 
 source "https://rubygems.org"
 
+ruby "~> 3.2"
+
+gem "csv"
 gem "rails", "~> 7.1.0"
 
 group :development, :test do
@@ -13,6 +16,7 @@ group :development do
   gem "appraisal"
   gem "benchmark-ips"
   gem "slim", "~> 5.0"
+  gem "appraisal-run", "~> 1.0"
 end
 
 group :test do

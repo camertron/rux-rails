@@ -1,3 +1,21 @@
+## 2.0.0
+* Remove the `Image`, `Audio`, and `Video` components (was anyone actually using these?)
+* Remove support for Rails 6.1 and 6.0.
+* Upgrade to onload v1.1 and rux to v1.3.
+  - Add `config.rux.ignore_path` to Rails config for controlling which ignore file should be populated with generated paths.
+* Add a series of Rails helper components:
+  - `Rails::ButtonTo`
+  - `Rails::LinkTo`
+  - `Rails::ContentTag`
+  - `Rails::FormWith`
+  - `Rails::Label`
+  - `Rails::Button`
+  - `Rails::HiddenField`
+  - `Rails::PasswordField`
+  - `Rails::TextField`
+* Add the `Rux::Component` component for rendering component instances.
+  - Eg: `<Rux::Component instance={@child} />`.
+
 ## 1.5.0
 * Extract monkeypatches into the [onload gem](https://github.com/camertron/onload).
 * Upgrade to rux v1.2.
