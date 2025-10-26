@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
 
   s.require_path = 'lib'
 
-  s.files = Dir['{lib,spec}/**/*', 'Gemfile', 'LICENSE', 'CHANGELOG.md', 'README.md', 'Rakefile', 'rux-rails.gemspec']
+  s.files = Dir['{app,lib,spec}/**/*', 'Gemfile', 'LICENSE', 'CHANGELOG.md', 'README.md', 'Rakefile', 'rux-rails.gemspec']
 end

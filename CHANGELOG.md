@@ -1,3 +1,6 @@
+## 2.0.1
+* Include app/ directory in published gem 🤦‍♂️
+
 ## 2.0.0
 * Remove the `Image`, `Audio`, and `Video` components (was anyone actually using these?)
 * Remove support for Rails 6.1 and 6.0.
